@@ -1,0 +1,5 @@
+---
+displayName: CD3
+description: CD3 provides a structured, customer centric, requirements-driven process for engaging with customers to design their OCI environment. It enables customer OCI requirements to be efficiently captured and converted into a tenancy design.
+tags: ["Centos", "Python", "pip"]
+icon: /images/CD3-Logo.jpeg

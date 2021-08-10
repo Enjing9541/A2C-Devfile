@@ -1,0 +1,11 @@
+---
+apiVersion: 1.0.0
+metadata:
+  generateName: A2C-Getting-Started-
+attributes:
+  persistVolumes: false
+projects:
+  - name: A2C-Getting-Started
+    source:
+      location: 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/orasenatdpltoci01/b/a2c-code-bucket/o/Getting%20Started%2Fa2c-getting-started-main.zip'
+      type: zip

@@ -1,0 +1,37 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: okit-
+attributes:
+  persistVolumes: false
+projects:
+  - name: okit
+    source:
+      location: 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/orasenatdpltoci01/b/a2c-code-bucket/o/okit%2Fokit.zip'
+      type: zip
+components:
+  - id: ms-python/python/latest
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - name: okit-web-designer
+        port: 7070
+    command:
+      - sleep
+      - infinity
+    memoryLimit: 1024Mi
+    type: dockerimage
+    alias: python
+    image: 'iad.ocir.io/orasenatdpltoci01/a2c-repo:okit-v2'
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: vscode/typescript-language-features/latest
+    type: chePlugin
+  - id: redhat/vscode-xml/latest
+    type: chePlugin
+commands:
+  - name: Run okit
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/okit/okit'
+        type: exec
+        command: 'gunicorn --workers=3 --limit-request-line 0 --timeout 1200 --bind=0.0.0.0:7070 okitweb.wsgi:app'
+        component: python

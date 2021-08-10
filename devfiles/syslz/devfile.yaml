@@ -1,0 +1,24 @@
+---
+apiVersion: 1.0.0
+metadata:
+  generateName: syslz-
+attributes:
+  persistVolumes: false
+projects:
+  - name: oci-cis-landingzone-quickstart
+    source:
+      location: 'https://github.com/oracle-quickstart/oci-cis-landingzone-quickstart.git'
+      type: git
+components:
+  - id: ms-python/python/latest
+    type: chePlugin
+  - mountSources: true
+    endpoints:
+      - name: django
+        port: 7000
+    memoryLimit: 512Mi
+    type: dockerimage
+    image: 'iad.ocir.io/orasenatdpltoci01/a2c-repo:tfplusoci'
+    alias: python
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin

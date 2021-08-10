@@ -1,0 +1,7 @@
+---
+displayName: Syslz
+description: This Landing Zone template deploys a standardized environment in an Oracle Cloud Infrastructure (OCI) tenancy that helps organizations to comply with the CIS OCI Foundations Benchmark v1.1
+tags: ["Centos", "Python", "pip"]
+icon: https://www.cisecurity.org/wp-content/themes/cis/assets/new-navigation/CIS-Logo-2-Line-2-Spot-Tagline-300px-high-largetext.png
+
+

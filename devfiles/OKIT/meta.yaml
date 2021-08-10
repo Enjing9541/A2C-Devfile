@@ -1,0 +1,5 @@
+---
+displayName: OKIT
+description: OCI designer and visualization toolKIT (OKIT) is a browser based tool that allows the user to design, deploy and visualize OCI environment through a graphical web based interface
+tags: ["Centos", "Python", "pip"]
+icon: /images/okit.png

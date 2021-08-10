@@ -1,0 +1,5 @@
+---
+displayName: Draw.io
+description: Build flowcharts, UML and process diagrams, ERDs, org charts, mindmaps and much more
+tags: ["Centos", "Python", "pip"]
+icon: https://raw.githubusercontent.com/hediet/vscode-drawio/master/docs/logo.drawio.png

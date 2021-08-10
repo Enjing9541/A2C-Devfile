@@ -1,0 +1,5 @@
+---
+displayName: Architecture As Code
+description: Creating a single workspace for 3 services that include cd3, okit and cis-lz
+tags: ["Centos", "Python", "pip"]
+icon: /images/achitecture-as-code.svg

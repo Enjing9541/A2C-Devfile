@@ -1,0 +1,52 @@
+apiVersion: 1.0.0
+metadata:
+  generateName: includedServices-
+projects:
+  - name: oci-cis-landingzone-quickstart
+    source:
+      location: 'https://github.com/oracle-quickstart/oci-cis-landingzone-quickstart.git'
+      type: git
+  - name: okit
+    source:
+      location: 'https://objectstorage.us-ashburn-1.oraclecloud.com/n/orasenatdpltoci01/b/a2c-code-bucket/o/okit%2Fokit.zip'
+      type: zip
+  - name: cd3
+    source:
+      location: ''
+      type: git
+attributes:
+  persistVolumes: false
+components:
+  - id: redhat/vscode-yaml/latest
+    type: chePlugin
+  - id: ms-python/python/latest
+    type: chePlugin
+  - mountSources: true
+    memoryLimit: 512Mi
+    type: dockerimage
+    alias: cd3
+    image: 'iad.ocir.io/orasenatdpltoci01/a2c-repo:cd3poc'
+  - mountSources: true
+    endpoints:
+      - name: okit-designer
+        port: 7070
+    command:
+      - sleep
+      - infinity
+    memoryLimit: 1024Mi
+    type: dockerimage
+    alias: okit
+    image: 'iad.ocir.io/orasenatdpltoci01/a2c-repo:okit-v2'
+commands:
+  - name: Install CD3
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/cd3dev'
+        type: exec
+        command: cp -R /tmp/* /projects/ && pip3 install regex==2021.4.4  && pip3 install pandas==1.1.5 && pip3 install openpyxl==3.0.5  && pip3 install xlrd==1.2.0 && pip3 install xlsxwriter==1.3.7  && pip3 install puttykeys && pip3 install netaddr==0.8.0  && pip3 install ipaddress==1.0.23 && pip3 install paramiko==2.7.2  && pip3 install Jinja2==3.0.1 && pip3 install simplejson==3.17.2  && pip3 install pycryptodomex==3.10.1
+        component: cd3
+  - name: Run okit
+    actions:
+      - workdir: '${CHE_PROJECTS_ROOT}/okit/okit'
+        type: exec
+        command: 'gunicorn --workers=3 --limit-request-line 0 --timeout 1200 --bind=0.0.0.0:7070 okitweb.wsgi:app'
+        component: okit
